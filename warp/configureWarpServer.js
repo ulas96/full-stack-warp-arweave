@@ -1,4 +1,5 @@
 import { WarpFactory } from 'warp-contracts'
+import { DeployPlugin } from 'warp-contracts-plugin-deploy'
 import fs from 'fs'
 
 /*
@@ -9,9 +10,9 @@ const environment = process.env.WARPENV || 'testnet'
 let warp
 
 if (environment === 'testnet') {
-  warp = WarpFactory.forTestnet()
+  warp = WarpFactory.forTestnet().use(new DeployPlugin())
 } else if (environment === 'mainnet') {
-  warp = WarpFactory.forMainnet()
+  warp = WarpFactory.forMainnet().use(new DeployPlugin())
 } else {
   throw Error('environment not set properly...')
 }

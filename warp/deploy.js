@@ -1,8 +1,9 @@
 import fs from 'fs'
 import { configureWallet, warp } from './configureWarpServer.js'
+import { ArweaveSigner } from 'warp-contracts-plugin-deploy'
 
 async function deploy() {
-  const wallet = await configureWallet()
+  const wallet = new ArweaveSigner(await configureWallet())
   const state = fs.readFileSync('state.json', 'utf-8')
   const contractsource = fs.readFileSync('contract.js', 'utf-8')
 
